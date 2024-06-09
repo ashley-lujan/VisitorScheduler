@@ -3,11 +3,9 @@ const startTime = new Date(0, 0, 0, 9, 0, 0);
 const endTime = new Date(0, 0, 0, 20, 0, 0); 
 
 
-
-
 function onButtonClick() 
 {
-    alert("Button clicked!"); 
+    console.log("this is not rlly working idk how i would make it work"); 
 }
 
 
@@ -25,15 +23,23 @@ function registerNew(btn)
 
 const row = 10; 
 
-/* Form Days of the Week*/
-const weekDays = ["_", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]; 
-
 var table = document.getElementById("form_table"); 
-// var current_row = table.insertRow(0); //get first row
-// for (let day = 0; day < weekDays.length; day++)
-// {
 
-// }
+/* Form Days of the Week*/
+const weekDays = ["_", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; 
+var first_row = table.rows[0]; 
+var current_cell = first_row.insertCell(0); 
+current_cell.innerHTML = "_"; 
+
+var currentDay = new Date(); 
+
+for (let day = 1; day <= 7; day++)
+{
+    current_cell = first_row.insertCell(day); 
+    
+    current_cell.innerHTML = `${weekDays[currentDay.getDay() + 1]}, ${currentDay.getMonth()}/${currentDay.getDate()}/${currentDay.getYear()}`; 
+    currentDay.setTime(currentDay.getTime() + 24 * 60 * 60 * 1000); 
+}
 
 const width = weekDays.length; 
 var dateHolder = new Date(startTime.getTime()); 
